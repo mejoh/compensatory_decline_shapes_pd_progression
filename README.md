@@ -27,28 +27,28 @@ Example code:
 `bidseditor bids`
 `bidscoiner raw bids`
 Resulting file structure:
-- bids directory
--- sub-0X
---- ses-0Y
----- anat
------ sub-0X_ses-0Y_acq-MPRAGE_T1w.json
------ sub-0X_ses-0Y_acq-MPRAGE_T1w.nii.gz
----- func
------ sub-0X_ses-0Y_task-motor_acq-MB6_bold.json
------ sub-0X_ses-0Y_task-motor_acq-MB6_bold.nii.gz
----- dwi
------ sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.bval
------ sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.bvec
------ sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.json
------ sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.nii.gz
------ sub-0X_ses-0Y_acq-MB3_dir-AP_sbref.json
------ sub-0X_ses-0Y_acq-MB3_dir-AP_sbref.nii.gz
----- fmap
------ sub-0X_ses-0Y_acq-MB3_dir-PA_epi.json
------ sub-0X_ses-0Y_acq-MB3_dir-PA_epi.nii.gz
----- beh
------ sub-0X_ses-0Y_task-motor_acq-MB6_events.json
------ sub-0X_ses-0Y_task-motor_acq-MB6_events.tsv
+|- bids directory
+| |- sub-0X
+| | |- ses-0Y
+| | | |- anat
+| | | | |- sub-0X_ses-0Y_acq-MPRAGE_T1w.json
+| | | | |- sub-0X_ses-0Y_acq-MPRAGE_T1w.nii.gz
+| | | |- func
+| | | | |- sub-0X_ses-0Y_task-motor_acq-MB6_bold.json
+| | | | |- sub-0X_ses-0Y_task-motor_acq-MB6_bold.nii.gz
+| | | |- dwi
+| | | | |- sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.bval
+| | | | |- sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.bvec
+| | | | |- sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.json
+| | | | |- sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.nii.gz
+| | | | |- sub-0X_ses-0Y_acq-MB3_dir-AP_sbref.json
+| | | | |- sub-0X_ses-0Y_acq-MB3_dir-AP_sbref.nii.gz
+| | | |- fmap
+| | | | |- sub-0X_ses-0Y_acq-MB3_dir-PA_epi.json
+| | | | |- sub-0X_ses-0Y_acq-MB3_dir-PA_epi.nii.gz
+| | | |- beh
+| | | | |- sub-0X_ses-0Y_task-motor_acq-MB6_events.json
+| | | | |- sub-0X_ses-0Y_task-motor_acq-MB6_events.tsv
 
 ## Task-based functional MRI
 ### Preprocessing
