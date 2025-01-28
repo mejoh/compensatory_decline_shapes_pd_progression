@@ -19,7 +19,7 @@ This repository contains all analysis code used in "Parkinson’s disease progre
 |__ 50hc50pd_b0-avg\
 |__ FMRIB58_FA\
 |__ HCP1065_FA\
-|__ HCP1065_MD\
+|__ HCP1065_MD
 
 # Clinical characteristics and demographics
 **Directory**: /scripts/`longitudinal_clinical_and_task-based_analysis.Rmd`
@@ -49,27 +49,27 @@ Example code:\
 
 Resulting file structure:\
 |_ bids directory\
-|_|_ sub-0X\
-|_|_|_ ses-0Y\
-|_|_|_|_ anat\
-|_|_|_|_|_ sub-0X_ses-0Y_acq-MPRAGE_T1w.json\
-|_|_|_|_|_ sub-0X_ses-0Y_acq-MPRAGE_T1w.nii.gz\
-|_|_|_|_ func\
-|_|_|_|_|_ sub-0X_ses-0Y_task-motor_acq-MB6_bold.json\
-|_|_|_|_|_ sub-0X_ses-0Y_task-motor_acq-MB6_bold.nii.gz\
-|_|_|_|_ dwi\
-|_|_|_|_|_ sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.bval\
-|_|_|_|_|_ sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.bvec\
-|_|_|_|_|_ sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.json\
-|_|_|_|_|_ sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.nii.gz\
-|_|_|_|_|_ sub-0X_ses-0Y_acq-MB3_dir-AP_sbref.json\
-|_|_|_|_|_ sub-0X_ses-0Y_acq-MB3_dir-AP_sbref.nii.gz\
-|_|_|_|_ fmap\
-|_|_|_|_|_ sub-0X_ses-0Y_acq-MB3_dir-PA_epi.json\
-|_|_|_|_|_ sub-0X_ses-0Y_acq-MB3_dir-PA_epi.nii.gz\
-|_|_|_|_ beh\
-|_|_|_|_|_ sub-0X_ses-0Y_task-motor_acq-MB6_events.json\
-|_|_|_|_|_ sub-0X_ses-0Y_task-motor_acq-MB6_events.tsv
+|__ sub-0X\
+|___ ses-0Y\
+|____ anat\
+|_____ sub-0X_ses-0Y_acq-MPRAGE_T1w.json\
+|_____ sub-0X_ses-0Y_acq-MPRAGE_T1w.nii.gz\
+|____ func\
+|_____ sub-0X_ses-0Y_task-motor_acq-MB6_bold.json\
+|_____ sub-0X_ses-0Y_task-motor_acq-MB6_bold.nii.gz\
+|____ dwi\
+|_____ sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.bval\
+|_____ sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.bvec\
+|_____ sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.json\
+|_____ sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.nii.gz\
+|_____ sub-0X_ses-0Y_acq-MB3_dir-AP_sbref.json\
+|_____ sub-0X_ses-0Y_acq-MB3_dir-AP_sbref.nii.gz\
+|____ fmap\
+|_____ sub-0X_ses-0Y_acq-MB3_dir-PA_epi.json\
+|_____ sub-0X_ses-0Y_acq-MB3_dir-PA_epi.nii.gz\
+|____ beh\
+|_____ sub-0X_ses-0Y_task-motor_acq-MB6_events.json\
+|_____ sub-0X_ses-0Y_task-motor_acq-MB6_events.tsv
 
 ## Task-based functional MRI
 
@@ -82,10 +82,10 @@ Example code for fMRIPREP:\
 ### First-level
 **Directory**: /scripts/tb_fMRI/1st_level\
 |_`rewrite_fmriprep_confounds_aroma2.m` correlates task regressors against ICA-AROMA noise components and relabels those that pass a certain threshold (5% explained variance) to non-noise.\
-|_|_`generate_task_regressors.m` generates regressors from task events, defined according to `extract_onsets_and_duration_pm.m`.
+|__`generate_task_regressors.m` generates regressors from task events, defined according to `extract_onsets_and_duration_pm.m`.
 |_`motor_1stlevel.m` carries out the first-level analysis.\
-|_|_`extract_onsets_and_duration_pm.m` extract onsets and durations from task performance data, and generates parametric modulations of them.\
-|_|_`non_gm_covariates_fmriprep.m` extracts confound timeseries from fMRIPREP output and inserts them as covariates in the first-level analysis.\
+|__`extract_onsets_and_duration_pm.m` extract onsets and durations from task performance data, and generates parametric modulations of them.\
+|__`non_gm_covariates_fmriprep.m` extracts confound timeseries from fMRIPREP output and inserts them as covariates in the first-level analysis.\
 `motor_copycontrasts.m` prepares first-level contrasts for group-level analysis. Left-sided responders are flipped horizontally so that the responding side is the same across participants.
 `ZipOrUnzip.m` utility function used to compress unused beta images from the 1st-level analysis
 
@@ -133,9 +133,9 @@ Example code for QSIprep:\
 ### Diffusion metrics
 **Directory**: /scripts/dwi/dti\
 |_`qsimeasure.py` is a utility function for generating metrics from QSIprep-processed DWI data.\
-|_|_`dipy_b0.py` uses DIpy to generate b0 images.\
-|_|_`dipy_fw.py` uses DIpy to generate a variety of tensors with DIpy and FSL implementations.\
-|_|_`amico_noddi.py` generates NODDI metrics. Currently not used, but included here for convenience if it becomes relevant at a later stage.
+|__`dipy_b0.py` uses DIpy to generate b0 images.\
+|__`dipy_fw.py` uses DIpy to generate a variety of tensors with DIpy and FSL implementations.\
+|__`amico_noddi.py` generates NODDI metrics. Currently not used, but included here for convenience if it becomes relevant at a later stage.
 
 ### Study-specific templates
 **Directory**: /templates and /scripts/dwi\
