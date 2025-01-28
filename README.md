@@ -1,5 +1,5 @@
-# compensatory_decline_shapes_pd_progression
-This repository contains all analysis code used in "Parkinson’s disease progression is shaped by longitudinal changes in cerebral compensation" by Johansson et al. in preparation.
+# compensatory_decline_shapes_pd_progression (under construction)
+This repository will contain all analysis code used in "Parkinson’s disease progression is shaped by longitudinal changes in cerebral compensation" - Johansson et al. in preparation.
 
 # Repository folder structure
 |_ ROIs\
