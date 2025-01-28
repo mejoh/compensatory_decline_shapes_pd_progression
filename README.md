@@ -2,19 +2,19 @@
 This repository contains all analysis code used in "Parkinson’s disease progression is shaped by longitudinal changes in cerebral compensation" by Johansson et al. in preparation.
 
 # Clinical
-
-## Demographics
-## Clinical scores
-## Symptom progression
-### Longitudinal mixed effects modelling
-### Co-variance with cognition and medication
+`longitudinal_clinical_and_task-based_analysis.Rmd`\
+- Demographics
+- Clinical scores
+- Symptom progression
+-- Longitudinal mixed effects modelling
+-- Co-variance with cognition and medication
 
 # Behavioral
-
-## Response times
-### Longitudinal mixed effects modelling
-### Clinical correlations
-## Other metrics
+`longitudinal_clinical_and_task-based_analysis.Rmd`\
+- Response times
+-- Longitudinal mixed effects modelling
+-- Clinical correlations
+- Additional behavioral metrics: accuracy, misses, button variability, switching variability
 
 # MRI
 
@@ -26,29 +26,30 @@ Example code:\
 `bidsmapper raw bids`\
 `bidseditor bids`\
 `bidscoiner raw bids`\
+
 Resulting file structure:\
 |- bids directory\
-| |- sub-0X\
-| | |- ses-0Y\
-| | | |- anat\
-| | | | |- sub-0X_ses-0Y_acq-MPRAGE_T1w.json\
-| | | | |- sub-0X_ses-0Y_acq-MPRAGE_T1w.nii.gz\
-| | | |- func\
-| | | | |- sub-0X_ses-0Y_task-motor_acq-MB6_bold.json\
-| | | | |- sub-0X_ses-0Y_task-motor_acq-MB6_bold.nii.gz\
-| | | |- dwi\
-| | | | |- sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.bval\
-| | | | |- sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.bvec\
-| | | | |- sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.json\
-| | | | |- sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.nii.gz\
-| | | | |- sub-0X_ses-0Y_acq-MB3_dir-AP_sbref.json\
-| | | | |- sub-0X_ses-0Y_acq-MB3_dir-AP_sbref.nii.gz\
-| | | |- fmap\
-| | | | |- sub-0X_ses-0Y_acq-MB3_dir-PA_epi.json\
-| | | | |- sub-0X_ses-0Y_acq-MB3_dir-PA_epi.nii.gz\
-| | | |- beh\
-| | | | |- sub-0X_ses-0Y_task-motor_acq-MB6_events.json\
-| | | | |- sub-0X_ses-0Y_task-motor_acq-MB6_events.tsv
+|-|- sub-0X\
+|-|-|- ses-0Y\
+|-|-|-|- anat\
+|-|-|-|-|- sub-0X_ses-0Y_acq-MPRAGE_T1w.json\
+|-|-|-|-|- sub-0X_ses-0Y_acq-MPRAGE_T1w.nii.gz\
+|-|-|-|- func\
+|-|-|-|-|- sub-0X_ses-0Y_task-motor_acq-MB6_bold.json\
+|-|-|-|-|- sub-0X_ses-0Y_task-motor_acq-MB6_bold.nii.gz\
+|-|-|-|- dwi\
+|-|-|-|-|- sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.bval\
+|-|-|-|-|- sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.bvec\
+|-|-|-|-|- sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.json\
+|-|-|-|-|- sub-0X_ses-0Y_acq-MB3_dir-AP_dwi.nii.gz\
+|-|-|-|-|- sub-0X_ses-0Y_acq-MB3_dir-AP_sbref.json\
+|-|-|-|-|- sub-0X_ses-0Y_acq-MB3_dir-AP_sbref.nii.gz\
+|-|-|-|- fmap\
+|-|-|-|-|- sub-0X_ses-0Y_acq-MB3_dir-PA_epi.json\
+|-|-|-|-|- sub-0X_ses-0Y_acq-MB3_dir-PA_epi.nii.gz\
+|-|-|-|- beh\
+|-|-|-|-|- sub-0X_ses-0Y_task-motor_acq-MB6_events.json\
+|-|-|-|-|- sub-0X_ses-0Y_task-motor_acq-MB6_events.tsv
 
 ## Task-based functional MRI
 
@@ -62,8 +63,8 @@ Example code for fMRIPREP:\
 Directory: M:\scripts\compensatory_decline_shapes_pd_progression\scripts\func\1st_level\
 `rewrite_fmriprep_confounds_aroma2.m` correlates task regressors against ICA-AROMA noise components and relabels those that pass a certain threshold (5% explained variance) to non-noise.\
 |-`motor_1stlevel.m` carries out the first-level analysis.\
-| |-`extract_onsets_and_duration_pm.m` extract onsets and durations from task performance data, and generates parametric modulations of them.\
-| |-`non_gm_covariates_fmriprep.m` extracts confound timeseries from fMRIPREP output and inserts them as covariates in the first-level analysis.\
+|-|-`extract_onsets_and_duration_pm.m` extract onsets and durations from task performance data, and generates parametric modulations of them.\
+|-|-`non_gm_covariates_fmriprep.m` extracts confound timeseries from fMRIPREP output and inserts them as covariates in the first-level analysis.\
 `motor_copycontrasts.m` prepares first-level contrasts for group-level analysis. Left-sided responders are flipped horizontally so that the responding side is the same across participants.
 
 ### Regions-of-interest for group-level analyses
@@ -108,9 +109,9 @@ Example code for QSIprep:\
 
 ### Diffusion metrics
 |-`qsimeasure.py` is a utility function for generating metrics from QSIprep-processed DWI data.\
-| |-`dipy_b0.py` uses DIpy to generate b0 images.\
-| |-`dipy_fw.py` uses DIpy to generate a variety of tensors with DIpy and FSL implementations.\
-| |-`amico_noddi.py` generates NODDI metrics. Currently not used, but included here for convenience if it becomes relevant at a later stage.
+|-|-`dipy_b0.py` uses DIpy to generate b0 images.\
+|-|-`dipy_fw.py` uses DIpy to generate a variety of tensors with DIpy and FSL implementations.\
+|-|-`amico_noddi.py` generates NODDI metrics. Currently not used, but included here for convenience if it becomes relevant at a later stage.
 
 ### Study-specific templates
 Directory: /home/sysneu/marjoh/scripts/compensatory_decline_shapes_pd_progression/templates
@@ -125,11 +126,21 @@ Directory: /home/sysneu/marjoh/scripts/compensatory_decline_shapes_pd_progressio
 Directory: M:\scripts\compensatory_decline_shapes_pd_progression\ROIs and M:\scripts\compensatory_decline_shapes_pd_progression\scripts\dwi\metric_extraction \
 `n2_ROIs_HCP1065_1mm.nii.gz` is a region-of-interest that was drawn on the `50hc50pd_b0-avg` template using FSLeyes, following conventions explained in [Archer et al. 2019](https://doi.org/10.1016/S2589-7500(19)30105-0).\
 `n2_ROIs_HCP1065_1mm_labels.txt` details the coordinates and labels of the SN roi.\
-extract_metrics_sub.sh and `extract_metrics.sh` extracts free water values from the SN mask.
+`extract_metrics_sub.sh` and `extract_metrics.sh` extracts free water values from the SN mask.
+
+#### Longitudinal mixed effects modelling and clinical correlations
+`longitudinal_structural_analysis.Rmd`
+
+#### Clinical correlations
+`longitudinal_structural_analysis.Rmd`
+
+### Surface-based cortical mean diffusivity
 
 #### Longitudinal mixed effects modelling
+`longitudinal_structural_analysis.Rmd`
+
 #### Clinical correlations
-### Surface-based cortical mean diffusivity
-#### Mean diffusivity mapping and surface projection
-#### Longitudinal mixed effects modelling
-#### Clinical correlations
+`longitudinal_structural_analysis.Rmd`
+
+#### Visualize surface-based mean diffusivity
+`plot_surface_md.R`
