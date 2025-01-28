@@ -1,0 +1,17 @@
+# Description
+#
+# Mask were manually drawn on a b0 image constructed from baseline and follow-up
+# sessions from 50 healthy controls and 50 PD patients. The MuSus-100 atlas was used
+# as a visual reference when placing the masks. Numbers below denote coordinates in Z.
+#
+# SN located on slices n2(-9; -10; -11)
+# Anterior: 3x3 voxels, box
+# Posterior: 3x3 voxels, box
+
+# Labels
+1 = R_aSN
+2 = L_aSN
+3 = R_pSN
+4 = L_pSN
+
+

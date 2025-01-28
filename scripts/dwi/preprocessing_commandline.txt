@@ -1,0 +1,18 @@
+# Diffusion
+module add qsiprep/0.19.0
+cd /project/3022026.01/pep/bids
+
+qsiprep_sub.py /project/3022026.01/pep/bids -o /project/3022026.01/pep/bids/derivatives 2 -n 1 -m 30000 -t 45  -p <SUBJECT> -f -a " --skip_bids_validation --dwi-only --denoise-method dwidenoise --unringing-method mrdegibbs --prefer_dedicated_fmaps --pepolar-method TOPUP --eddy-config /project/3022026.01/pep/bids/derivatives/qsiprep/eddy_params.json" -d
+
+	# Results in job submission below
+sbatch --job-name=qsiprep_sub-POMU3E2A2E638B42B398  --mem=30000 --time=45:00:00 --ntasks=1 --cpus-per-task=1 --tmp=50G  -o /project/3022026.01/pep/bids/derivatives/qsiprep/logs -e /project/3022026.01/pep/bids/derivatives/qsiprep/logs <<EOF
+#!/bin/bash
+
+ulimit -v unlimited
+echo using: TMPDIR=\$TMPDIR
+cd /project/3022026.01/pep/bids              
+apptainer run --cleanenv  --bind \$TMPDIR:/tmp /opt/qsiprep/0.19.0/qsiprep-0.19.0.sif /project/3022026.01/pep/bids /project/3022026.01/pep/bids/derivatives participant --output-resolution 2 -w \$TMPDIR/sub-POMU3E2A2E638B42B398 --participant-label POMU3E2A2E638B42B398  --fs-license-file /opt_host/fmriprep/license.txt --mem_mb 30000 --omp-nthreads 1 --nthreads 1  --skip_bids_validation --dwi-only --denoise-method dwidenoise --unringing-method mrdegibbs --prefer_dedicated_fmaps --pepolar-method TOPUP --eddy-config /project/3022026.01/pep/bids/derivatives/qsiprep/eddy_params.json --write-graph
+EOF
+
+
+

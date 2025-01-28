@@ -1,0 +1,21 @@
+# Functional
+module load fmriprep/23.0.2
+cd /project/3022026.01/pep/bids
+
+task=motor
+fmriprep_sub.py /project/3022026.01/pep/bids -o /project/3022026.01/pep/bids/derivatives/fmriprep_v23.0.2/$task -m 37500 -t 65 -p <SUBJECT LIST> -a " --task-id $task --use-aroma  --echo-idx 1 --ignore fieldmaps flair --output-spaces MNI152NLin6Asym --longitudinal  --skip_bids_validation" -q " -o /project/3022026.01/pep/bids/derivatives/fmriprep_v23.0.2/$task/logs -e /project/3022026.01/pep/bids/derivatives/fmriprep_v23.0.2/$task/logs" -d
+
+	# Results in job submission below
+
+sbatch --job-name=fmriprep_sub-POMU3E2A2E638B42B398 --mem=37500 --time=65:00:00 --ntasks=1 --cpus-per-task=4 --tmp=50G  -o /project/3022026.01/pep/bids/derivatives/fmriprep_v23.0.2/motor/logs -e /project/3022026.01/pep/bids/derivatives/fmriprep_v23.0.2/motor/logs <<EOF
+#!/bin/bash
+
+ulimit -v unlimited
+echo using: TMPDIR=\$TMPDIR
+cd /project/3022026.01/pep/bids
+apptainer run --cleanenv --bind \$TMPDIR:/tmp,\$TMPDIR:/var/tmp /opt/fmriprep/23.0.2/fmriprep-23.0.2.simg /project/3022026.01/pep/bids /project/3022026.01/pep/bids/derivatives/fmriprep_v23.0.2/motor participant -w \$TMPDIR/sub-<SUBJECT> --participant-label <SUBJECT>  --fs-license-file /opt_host/fmriprep/license.txt --mem_mb 37500 --omp-nthreads 4 --nthreads 4  --task-id motor --use-aroma  --echo-idx 1 --ignore fieldmaps flair --output-spaces MNI152NLin6Asym --longitudinal  --skip_bids_validation
+EOF
+
+
+
+

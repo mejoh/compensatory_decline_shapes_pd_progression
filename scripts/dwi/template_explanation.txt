@@ -1,0 +1,21 @@
+Populations with older participants will, in general, have smaller brain and larger ventricles than the participants that were used to construct the typical MNI152 templates, particularly if those older participants are affected by neurodegenerative disorders. When a cohort consists of both healthy older individuals and patients the problem arises that the brains of patients will likely require more extensive transformations than the healthy individuals during normalization to MNI space. This introduces a possible confound in group comparisons. To avoid this, we construct a template from a random selection of healthy individuals and patients. This template will represent something in between the patients and healthy individuals. Hence, the two groups will, on average, receive equally extensive transformations to the template space during spatial normalization.
+
+A second confound enters the picture when data are longitudinal, as this can lead to within-subject differences in normalization. For this reason, it is important to first construct a 'halfway' space for each subject, to which the original data can be regisitered before the transformation to MNI space. This ensures that two scans acquired for the same participant, but at different time points, will be transformed in the same manner to MNI space. 
+
+antsMultivariateTemplateConstruction is used to generate templates. A copy of this script is provided in the folder because the original has a flag in the qsub commands that does not work on our cluster. This script program performs the following steps:
+1. Normalize input images to a reference template, such as the MNI152NLinAsym6 2mm-resolution brain, using ANTS
+2. Average normalized images to form a template
+3. Take the inverse warps from the normalization and average them
+4. Scale the average inverse warp by a gradient step
+5. Average affine transformations from subject>template
+6. Apply the inverse of the average affine transformation to the average inverse warp
+7. Warp the template by the average inverse affine and average inverse warp
+This is then iterated X times. Each iterations brings the template to a closer representation of the subjects. The resulting template will be in MNI-space, but updated such that the anatomy of the input population is accounted for. 
+
+Three templates are provided. HCP1065 are the main ones to use, depending on what template you wish to generate. Both FA and MD templates are needed to normalize metrics.
+
+
+
+
+
+

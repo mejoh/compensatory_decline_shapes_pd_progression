@@ -81,11 +81,11 @@ Example code for fMRIPREP:\
 
 ### First-level
 **Directory**: /scripts/tb_fMRI/1st_level\
-|_`rewrite_fmriprep_confounds_aroma2.m` correlates task regressors against ICA-AROMA noise components and relabels those that pass a certain threshold (5% explained variance) to non-noise.\
-|__`generate_task_regressors.m` generates regressors from task events, defined according to `extract_onsets_and_duration_pm.m`.
-|_`motor_1stlevel.m` carries out the first-level analysis.\
-|__`extract_onsets_and_duration_pm.m` extract onsets and durations from task performance data, and generates parametric modulations of them.\
-|__`non_gm_covariates_fmriprep.m` extracts confound timeseries from fMRIPREP output and inserts them as covariates in the first-level analysis.\
+|_ `rewrite_fmriprep_confounds_aroma2.m` correlates task regressors against ICA-AROMA noise components and relabels those that pass a certain threshold (5% explained variance) to non-noise.\
+|__ `generate_task_regressors.m` generates regressors from task events, defined according to `extract_onsets_and_duration_pm.m`.
+|_ `motor_1stlevel.m` carries out the first-level analysis.\
+|__ `extract_onsets_and_duration_pm.m` extract onsets and durations from task performance data, and generates parametric modulations of them.\
+|__ `non_gm_covariates_fmriprep.m` extracts confound timeseries from fMRIPREP output and inserts them as covariates in the first-level analysis.\
 `motor_copycontrasts.m` prepares first-level contrasts for group-level analysis. Left-sided responders are flipped horizontally so that the responding side is the same across participants.
 `ZipOrUnzip.m` utility function used to compress unused beta images from the 1st-level analysis
 
@@ -125,23 +125,23 @@ Example code for QSIprep:\
 #### FreeSurfer longitudinal pipeline
 **Directory**: /scripts/freesurfer\
 `s0_copy_T1.sh` prepares T1w anatomicals for recon-all.\
-`s1_fs_cross_processSubject.sh` performs recon-all on all T1w images.\
-`s2_fs_base_processSubject.sh` creates base output that occupies the halfway space between baseline and follow-up measurements.\
-`s3_fs_long_processSubject.sh` generates recon-all outputs that are unbiased with respect to time.\
-`fs_submitJobs.sh` provides utility for submitting steps 1-3 above to a torque cluster.
+|_ `fs_submitJobs.sh` provides utility for submitting steps 1-3 above to a torque cluster.
+|__ `s1_fs_cross_processSubject.sh` performs recon-all on all T1w images.\
+|__ `s2_fs_base_processSubject.sh` creates base output that occupies the halfway space between baseline and follow-up measurements.\
+|__ `s3_fs_long_processSubject.sh` generates recon-all outputs that are unbiased with respect to time.\
 
 ### Diffusion metrics
 **Directory**: /scripts/dwi/dti\
-|_`qsimeasure.py` is a utility function for generating metrics from QSIprep-processed DWI data.\
-|__`dipy_b0.py` uses DIpy to generate b0 images.\
-|__`dipy_fw.py` uses DIpy to generate a variety of tensors with DIpy and FSL implementations.\
-|__`amico_noddi.py` generates NODDI metrics. Currently not used, but included here for convenience if it becomes relevant at a later stage.
+|_ `qsimeasure.py` is a utility function for generating metrics from QSIprep-processed DWI data.\
+|__ `dipy_b0.py` uses DIpy to generate b0 images.\
+|__ `dipy_fw.py` uses DIpy to generate a variety of tensors with DIpy and FSL implementations.\
+|__ `amico_noddi.py` generates NODDI metrics. Currently not used, but included here for convenience if it becomes relevant at a later stage.
 
 ### Study-specific templates
 **Directory**: /templates and /scripts/dwi\
-- FA: `HCP1065_FA` and `FMRIB58_FA` directories contain 1mm and 2mm resolution templates in MNI-space based on FA images of 50 healthy controls and 50 patients (both baseline and follow-up), created using `antsMultivariateTemplateConstruction.sh`. FSL-standard templates in HCP1065- and FMRIB58-space were used as targets.\
-- MD: `HCP1065_MD`. Same as FA, except the target image in MNI space was an MD template.\
-- b0: `50hc50pd_b0-avg`. This template was formed by taking the average across baseline and follow-up b0 images from the same 50 healthy controls and 50 patients that were included in the FA and MD template construction.
+- **FA**: `HCP1065_FA` and `FMRIB58_FA` directories contain 1mm and 2mm resolution templates in MNI-space based on FA images of 50 healthy controls and 50 patients (both baseline and follow-up), created using `antsMultivariateTemplateConstruction.sh`. FSL-standard templates in HCP1065- and FMRIB58-space were used as targets.\
+- **MD**: `HCP1065_MD`. Same as FA, except the target image in MNI space was an MD template.\
+- **b0**: `50hc50pd_b0-avg`. This template was formed by taking the average across baseline and follow-up b0 images from the same 50 healthy controls and 50 patients that were included in the FA and MD template construction.
 
 ### Normalization of diffusion metrics
 **Directory**: /scripts/dwi\
