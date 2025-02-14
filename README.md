@@ -2,6 +2,7 @@
 This repository will contain all analysis code used in "Parkinson’s disease progression is shaped by longitudinal changes in cerebral compensation" - Johansson et al. in preparation.
 
 # Repository folder structure
+|_ Data
 |_ ROIs\
 |__ Johansson2024_BRAIN...\
 |__ n2_ROIs...\
@@ -20,6 +21,9 @@ This repository will contain all analysis code used in "Parkinson’s disease pr
 |__ FMRIB58_FA\
 |__ HCP1065_FA\
 |__ HCP1065_MD
+
+# Data supporting figures 1-5
+All data used to generate plots can be found in the following link: https://surfdrive.surf.nl/files/index.php/s/O3ygV8gjUjx7oca. For Figures 3-4, statistial derivatives from imaging analyses are also included.
 
 # Clinical characteristics and demographics
 **Directory**: /scripts/`longitudinal_clinical_and_task-based_analysis.Rmd`
@@ -139,6 +143,7 @@ Example code for QSIprep:\
 
 ### Study-specific templates
 **Directory**: /templates and /scripts/dwi\
+`ANTs_generate_template.sh` IN PROGRESS\
 - **FA**: `HCP1065_FA` and `FMRIB58_FA` directories contain 1mm and 2mm resolution templates in MNI-space based on FA images of 50 healthy controls and 50 patients (both baseline and follow-up), created using `antsMultivariateTemplateConstruction.sh`. FSL-standard templates in HCP1065- and FMRIB58-space were used as targets.\
 - **MD**: `HCP1065_MD`. Same as FA, except the target image in MNI space was an MD template.\
 - **b0**: `50hc50pd_b0-avg`. This template was formed by taking the average across baseline and follow-up b0 images from the same 50 healthy controls and 50 patients that were included in the FA and MD template construction.
